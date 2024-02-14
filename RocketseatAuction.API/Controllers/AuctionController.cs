@@ -4,9 +4,7 @@ using RocketseatAuction.API.UseCases.Auctions.GetCurrent;
 
 namespace RocketseatAuction.API.Controllers;
 
-[Route("[controller]")]
-[ApiController]
-public class AuctionController : ControllerBase
+public class AuctionController : RocketseatAuctionBaseController
 {
     [HttpGet]
     [ProducesResponseType(typeof(Auction), StatusCodes.Status200OK)]
@@ -18,8 +16,7 @@ public class AuctionController : ControllerBase
         var result = useCase.Execute();
 
         if (result == null)       
-            return NoContent();
-        
+            return NoContent();       
 
         return Ok(result);
     }
